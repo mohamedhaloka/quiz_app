@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
                   margin: EdgeInsets.all(2),
                   color: Quiz().quizAnswers[index] == answers[index]
                       ? Colors.green
-                      : Colors.red ?? Colors.white,
+                      : Colors.red ,
                 ),
                 itemCount: answers.length,
               ),
