@@ -11,6 +11,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   List correctAnswers = [];
+  List answers = [];
   int questionNumber = 0;
   @override
   Widget build(BuildContext context) {
@@ -31,11 +32,11 @@ class _HomeViewState extends State<HomeView> {
                   width: 25,
                   height: 5,
                   margin: EdgeInsets.all(2),
-                  color: Quiz().quizAnswers[index] == correctAnswers[index]
+                  color: Quiz().quizAnswers[index] == answers[index]
                       ? Colors.green
                       : Colors.red ?? Colors.white,
                 ),
-                itemCount: correctAnswers.length,
+                itemCount: answers.length,
               ),
             ),
             Text(
@@ -81,28 +82,37 @@ class _HomeViewState extends State<HomeView> {
       if (questionNumber < Quiz().quizQuestions.length - 1) {
         if (Quiz().quizAnswers[questionNumber] == e) {
           print("true");
-          correctAnswers.add(e);
+          answers.add(e);
+          correctAnswers.add("1");
         } else {
           print("false!");
-          correctAnswers.add(e);
+          answers.add(e);
         }
         setState(() {
           questionNumber++;
         });
       } else {
-        if (correctAnswers.length == Quiz().quizQuestions.length) {
+        if (answers.length == Quiz().quizQuestions.length) {
+          Dialog();
         } else {
+          answers.add(e);
           correctAnswers.add(e);
+
+          print(answers.length);
           print(correctAnswers.length);
           print(Quiz().quizQuestions.length);
-          showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    content: Text(
-                        "You HAve ${correctAnswers.length} of ${Quiz().quizQuestions.length}"),
-                  ));
+          Dialog();
         }
       }
     });
+  }
+
+  Dialog() {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              content: Text(
+                  "You HAve ${correctAnswers.length} of ${Quiz().quizQuestions.length}"),
+            ));
   }
 }
