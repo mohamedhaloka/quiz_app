@@ -24,11 +24,11 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-
-        ],
+      body: Center(
+        child: Text(
+          "Quot".toUpperCase(),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 70),
+        ),
       ),
     );
   }
