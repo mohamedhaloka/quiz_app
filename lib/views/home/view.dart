@@ -13,6 +13,7 @@ class _HomeViewState extends State<HomeView> {
   List correctAnswers = [];
   List answers = [];
   int questionNumber = 0;
+  List<IconData> answerIcon = List.generate(5, (index) => Icons.height);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,33 +44,38 @@ class _HomeViewState extends State<HomeView> {
               Quiz().quizQuestions[questionNumber],
               style: TextStyle(fontSize: 30),
             ),
-            Column(
-              children: Quiz()
-                  .answers[questionNumber]
-                  .map((e) => Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(bottom: 20),
-                        height: 60,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.grey[200])),
-                        child: RaisedButton(
-                          elevation: 0.0,
-                          highlightElevation: 0.0,
-                          color: Colors.transparent,
-                          onPressed: () => onPress(e),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                e,
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ],
-                          ),
+            Container(
+              width: customWidth(context, 1),
+              height: customHeight(context, 0.5),
+              child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  itemCount: Quiz().answers[questionNumber].length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: double.infinity,
+                      margin: EdgeInsets.only(bottom: 20),
+                      height: 60,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.grey[200])),
+                      child: RaisedButton(
+                        elevation: 0.0,
+                        highlightElevation: 0.0,
+                        color: Colors.transparent,
+                        onPressed: () => onPress(index),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              Quiz().answers[questionNumber].elementAt(index),
+                              style: TextStyle(fontSize: 18),
+                            ),
+                            Icon(answerIcon[index]),
+                          ],
                         ),
-                      ))
-                  .toList(),
+                      ),
+                    );
+                  }),
             )
           ],
         ),
@@ -77,33 +83,42 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  onPress(e) {
+  onPress(index) {
     setState(() {
       if (questionNumber < Quiz().quizQuestions.length - 1) {
-        if (Quiz().quizAnswers[questionNumber] == e) {
+        if (Quiz().quizAnswers[questionNumber] ==
+            Quiz().answers[questionNumber].elementAt(index)) {
           print("true");
-          answers.add(e);
+          answerIcon[index] = Icons.check;
+
+          answers.add(Quiz().answers[questionNumber].elementAt(index));
           correctAnswers.add("1");
         } else {
           print("false!");
-          answers.add(e);
+          answerIcon[index] = Icons.close;
+
+          answers.add(Quiz().answers[questionNumber].elementAt(index));
         }
-        setState(() {
-          questionNumber++;
+        Timer(Duration(seconds: 1), () {
+          setState(() {
+            questionNumber++;
+          });
         });
       } else {
         if (answers.length == Quiz().quizQuestions.length) {
           Dialog();
         } else {
-          answers.add(e);
-          correctAnswers.add(e);
-
+          answers.add(Quiz().answers[questionNumber].elementAt(index));
+          correctAnswers.add("1");
           print(answers.length);
           print(correctAnswers.length);
           print(Quiz().quizQuestions.length);
           Dialog();
         }
       }
+      Timer(Duration(seconds: 1), () {
+        answerIcon[index] = Icons.height;
+      });
     });
   }
 
