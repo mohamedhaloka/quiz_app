@@ -16,6 +16,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   List correctAnswers = [];
   List answers = [];
+  List lastScore = [];
   int questionNumber = 0;
   List<IconData> answerIcon = List.generate(5, (index) => null);
   @override
@@ -85,6 +86,7 @@ class _HomeViewState extends State<HomeView> {
 
           answers.add(Quiz().answers[questionNumber].elementAt(index));
           correctAnswers.add("1");
+          lastScore.add("1");
         } else {
           print("false!");
           answerIcon[index] = Icons.close;
@@ -116,11 +118,19 @@ class _HomeViewState extends State<HomeView> {
 
   Dialog() {
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              backgroundColor: kPrimaryColor,
-              content: Text(
-                  "You Have ${correctAnswers.length} of ${Quiz().quizQuestions.length}"),
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: kPrimaryColor,
+        content: Text(
+            "You Have ${correctAnswers.length} of ${Quiz().quizQuestions.length}"),
+        actions: [
+          FlatButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Back"))
+        ],
+      ),
+    );
   }
 }

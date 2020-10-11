@@ -27,7 +27,7 @@ class _SplashViewState extends State<SplashView> {
       body: Center(
         child: Text(
           "Quot".toUpperCase(),
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 70),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 100),
         ),
       ),
     );
