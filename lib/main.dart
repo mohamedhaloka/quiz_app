@@ -11,9 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Quoz App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: "Dosis",
         brightness: Brightness.dark,
         primaryColor: kPrimaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
