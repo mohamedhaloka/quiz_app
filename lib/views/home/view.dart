@@ -13,7 +13,7 @@ class _HomeViewState extends State<HomeView> {
   List correctAnswers = [];
   List answers = [];
   int questionNumber = 0;
-  List<IconData> answerIcon = List.generate(5, (index) => Icons.height);
+  List<IconData> answerIcon = List.generate(5, (index) => null);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,7 +117,7 @@ class _HomeViewState extends State<HomeView> {
         }
       }
       Timer(Duration(seconds: 1), () {
-        answerIcon[index] = Icons.height;
+        answerIcon[index] = null;
       });
     });
   }
