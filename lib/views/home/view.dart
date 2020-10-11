@@ -4,6 +4,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/const.dart';
 import 'package:quiz_app/quiz_details.dart';
+import 'package:quiz_app/views/home/quit_quiz_button.dart';
+import 'package:quiz_app/views/home/quiz_header.dart';
+import 'package:quiz_app/views/home/quiz_question.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -25,64 +28,13 @@ class _HomeViewState extends State<HomeView> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Align(
-              child: Text(
-                "Some Question About Me!",
-                style: TextStyle(color: Colors.white38, fontSize: 22),
-              ),
-              alignment: Alignment.centerLeft,
-            ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    "Question".toUpperCase(),
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.white38),
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    questionNumber < 9
-                        ? "0${questionNumber + 1}"
-                        : "${questionNumber + 1}",
-                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 36),
-                  ),
-                  Text(
-                    "/${Quiz.quizs.length}",
-                    style: TextStyle(color: Colors.white38, fontSize: 30),
-                  ),
-                ],
-              ),
-            ),
             Container(
-              width: customWidth(context, 1),
-              height: 6,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => Container(
-                  width: 25,
-                  height: 5,
-                  margin: EdgeInsets.all(2),
-                  color: Quiz().quizAnswers[index] == answers[index]
-                      ? Colors.green
-                      : Colors.red,
-                ),
-                itemCount: answers.length,
-              ),
-            ),
-            Expanded(
-              child: Text(
-                Quiz().quizQuestions[questionNumber],
-                style: TextStyle(fontSize: 30),
-                textAlign: TextAlign.center,
-              ),
-              flex: 2,
+                width: customWidth(context, 1),
+                height: 80,
+                child: QuizHeader(
+                    questionNumber: questionNumber, answers: answers)),
+            QuizQuestion(
+              questionNumber: questionNumber,
             ),
             Expanded(
               child: ListView.builder(
@@ -116,30 +68,7 @@ class _HomeViewState extends State<HomeView> {
                   }),
               flex: 5,
             ),
-            Expanded(
-                child: Container(
-              width: 118,
-              height: 70,
-              child: RaisedButton(
-                onPressed: () => exit(0),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      "assets/images/shutdown.png",
-                      width: 20,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text("Shutdown")
-                  ],
-                ),
-                color: Colors.transparent,
-                elevation: 0.0,
-                highlightElevation: 0.0,
-              ),
-            ))
+            QuitQuizButton()
           ],
         ),
       ),
@@ -191,7 +120,7 @@ class _HomeViewState extends State<HomeView> {
         builder: (context) => AlertDialog(
               backgroundColor: kPrimaryColor,
               content: Text(
-                  "You HAve ${correctAnswers.length} of ${Quiz().quizQuestions.length}"),
+                  "You Have ${correctAnswers.length} of ${Quiz().quizQuestions.length}"),
             ));
   }
 }
