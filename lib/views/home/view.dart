@@ -24,6 +24,38 @@ class _HomeViewState extends State<HomeView> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Align(
+              child: Text(
+                "QUIZ App",
+                style: TextStyle(color: Colors.white38, fontSize: 22),
+              ),
+              alignment: Alignment.centerLeft,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  "Question".toUpperCase(),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Colors.white38),
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  questionNumber < 10
+                      ? "0${questionNumber + 1}"
+                      : "${questionNumber + 1}",
+                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 36),
+                ),
+                Text(
+                  "/${Quiz.quizs.length}",
+                  style: TextStyle(color: Colors.white38, fontSize: 30),
+                ),
+              ],
+            ),
             Container(
               width: customWidth(context, 1),
               height: 6,
@@ -35,7 +67,7 @@ class _HomeViewState extends State<HomeView> {
                   margin: EdgeInsets.all(2),
                   color: Quiz().quizAnswers[index] == answers[index]
                       ? Colors.green
-                      : Colors.red ,
+                      : Colors.red,
                 ),
                 itemCount: answers.length,
               ),
@@ -43,6 +75,7 @@ class _HomeViewState extends State<HomeView> {
             Text(
               Quiz().quizQuestions[questionNumber],
               style: TextStyle(fontSize: 30),
+              textAlign: TextAlign.center,
             ),
             Container(
               width: customWidth(context, 1),
