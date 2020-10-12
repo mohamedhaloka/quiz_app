@@ -64,7 +64,7 @@ class QuizHeader extends StatelessWidget {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) => Container(
-        width: 25,
+        width: customWidth(context, 0.04),
         height: 5,
         margin: EdgeInsets.all(2),
         color: colorAnswer

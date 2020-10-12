@@ -1,7 +1,7 @@
 class Quiz {
   static Map quizs = {
     'What is your name?': 'Mohamed Nasr',
-    'What is your age?': '19',
+    'What is your age?': '19 و 7 شهور',
     'What is your address?': 'Mogam3 Elmahakem',
     'What is your Collage?': 'FCIS',
     'What is your Country?': 'Egypt',
@@ -19,16 +19,18 @@ class Quiz {
   List<List> answers = [
     [
       'Mohamed Nasr',
-      'Ahmed Haloka',
+      'Mohamed Haloka',
     ],
     [
-      '20',
       '19',
+      '19 و 7 شهور',
       '18',
     ],
     [
-      'Mogam3 Elmahakem',
       '10 street',
+      'Gdela',
+      'Mogam3 Elmahakem',
+      'El m4aya',
     ],
     [
       'FCIS',
@@ -42,13 +44,15 @@ class Quiz {
       'Algeria',
     ],
     [
-      'Mansoura',
       'Alexandria',
+      'Cairo',
+      'Mansoura',
+      'Fayoum'
     ],
     [
-      'Nasr',
       'Eslam',
       'Mahmoud',
+      'Nasr',
     ],
     [
       'Haloka',
