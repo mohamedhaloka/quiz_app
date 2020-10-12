@@ -71,7 +71,9 @@ class QuizHeader extends StatelessWidget {
             ? Quiz().quizAnswers[index] == answers[index]
                 ? Colors.green
                 : Colors.red
-            : Colors.white38,
+            : questionNumber == index
+                ? Colors.white
+                : Colors.white38,
       ),
       itemCount: list,
     );
