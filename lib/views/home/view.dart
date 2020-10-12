@@ -19,6 +19,7 @@ class _HomeViewState extends State<HomeView> {
   List lastScore = [];
   int questionNumber = 0;
   List<IconData> answerIcon = List.generate(5, (index) => null);
+  List<Color> containerColor = List.generate(5, (index) => Colors.grey[200]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
                       height: 60,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey[200])),
+                          border: Border.all(color: containerColor[index])),
                       child: RaisedButton(
                         elevation: 0.0,
                         highlightElevation: 0.0,
@@ -61,7 +62,10 @@ class _HomeViewState extends State<HomeView> {
                               Quiz().answers[questionNumber].elementAt(index),
                               style: TextStyle(fontSize: 18),
                             ),
-                            Icon(answerIcon[index]),
+                            Icon(
+                              answerIcon[index],
+                              color: containerColor[index],
+                            ),
                           ],
                         ),
                       ),
@@ -83,6 +87,7 @@ class _HomeViewState extends State<HomeView> {
             Quiz().answers[questionNumber].elementAt(index)) {
           print("true");
           answerIcon[index] = Icons.check;
+          containerColor[index] = Colors.green;
 
           answers.add(Quiz().answers[questionNumber].elementAt(index));
           correctAnswers.add("1");
@@ -90,6 +95,7 @@ class _HomeViewState extends State<HomeView> {
         } else {
           print("false!");
           answerIcon[index] = Icons.close;
+          containerColor[index] = Colors.red;
 
           answers.add(Quiz().answers[questionNumber].elementAt(index));
         }
@@ -116,6 +122,7 @@ class _HomeViewState extends State<HomeView> {
       }
       Timer(Duration(seconds: 1), () {
         answerIcon[index] = null;
+        containerColor[index] = Colors.grey[300];
       });
     });
   }
