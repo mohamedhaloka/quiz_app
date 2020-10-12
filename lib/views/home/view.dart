@@ -101,9 +101,13 @@ class _HomeViewState extends State<HomeView> {
       } else {
         if (answers.length == Quiz().quizQuestions.length) {
           Dialog();
-        } else {
+        } else if (Quiz().quizAnswers[questionNumber] ==
+            Quiz().answers[questionNumber].elementAt(index)) {
           answers.add(Quiz().answers[questionNumber].elementAt(index));
           correctAnswers.add("1");
+          Dialog();
+        } else {
+          answers.add(Quiz().answers[questionNumber].elementAt(index));
           print(answers.length);
           print(correctAnswers.length);
           print(Quiz().quizQuestions.length);

@@ -26,7 +26,7 @@ class _SplashViewState extends State<SplashView> {
       backgroundColor: kPrimaryColor,
       body: Center(
         child: Text(
-          "Quot".toUpperCase(),
+          "Quiz".toUpperCase(),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 100),
         ),
       ),
