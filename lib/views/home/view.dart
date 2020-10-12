@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/const.dart';
 import 'package:quiz_app/quiz_details.dart';
@@ -130,8 +131,7 @@ class _HomeViewState extends State<HomeView> {
   Dialog() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: kPrimaryColor,
+      builder: (context) => CupertinoAlertDialog(
         content: Text(
             "You Have ${correctAnswers.length} of ${Quiz().quizQuestions.length}"),
         actions: [
