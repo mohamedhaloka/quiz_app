@@ -62,9 +62,10 @@ class QuizHeader extends StatelessWidget {
 
   drawAnswerTracker(list, colorAnswer) {
     return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) => Container(
-        width: customWidth(context, 0.04),
+        width: customWidth(context, 0.03),
         height: 5,
         margin: EdgeInsets.all(2),
         color: colorAnswer

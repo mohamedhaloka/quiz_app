@@ -21,6 +21,7 @@ class _HomeViewState extends State<HomeView> {
   int questionNumber = 0;
   List<IconData> answerIcon = List.generate(5, (index) => null);
   List<Color> containerColor = List.generate(5, (index) => Colors.grey[200]);
+  List<Color> textColor = List.generate(5, (index) => Colors.white);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
                           children: [
                             Text(
                               Quiz().answers[questionNumber].elementAt(index),
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 18,color: textColor[index]),
                             ),
                             Icon(
                               answerIcon[index],
@@ -89,6 +90,7 @@ class _HomeViewState extends State<HomeView> {
           print("true");
           answerIcon[index] = Icons.check;
           containerColor[index] = Colors.green;
+          textColor[index] = Colors.green;
 
           answers.add(Quiz().answers[questionNumber].elementAt(index));
           correctAnswers.add("1");
@@ -97,6 +99,7 @@ class _HomeViewState extends State<HomeView> {
           print("false!");
           answerIcon[index] = Icons.close;
           containerColor[index] = Colors.red;
+          textColor[index] = Colors.red;
 
           answers.add(Quiz().answers[questionNumber].elementAt(index));
         }
@@ -124,6 +127,7 @@ class _HomeViewState extends State<HomeView> {
       Timer(Duration(seconds: 1), () {
         answerIcon[index] = null;
         containerColor[index] = Colors.grey[300];
+        textColor[index] = Colors.white;
       });
     });
   }

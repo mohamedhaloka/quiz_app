@@ -43,12 +43,7 @@ class Quiz {
       'Libia',
       'Algeria',
     ],
-    [
-      'Alexandria',
-      'Cairo',
-      'Mansoura',
-      'Fayoum'
-    ],
+    ['Alexandria', 'Cairo', 'Mansoura', 'Fayoum'],
     [
       'Eslam',
       'Mahmoud',
