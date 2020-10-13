@@ -62,7 +62,8 @@ class _HomeViewState extends State<HomeView> {
                           children: [
                             Text(
                               Quiz().answers[questionNumber].elementAt(index),
-                              style: TextStyle(fontSize: 18,color: textColor[index]),
+                              style: TextStyle(
+                                  fontSize: 18, color: textColor[index]),
                             ),
                             Icon(
                               answerIcon[index],
